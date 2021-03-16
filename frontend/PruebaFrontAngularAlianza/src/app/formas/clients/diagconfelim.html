@@ -1,0 +1,13 @@
+<div mat-dialog-title class="flex-container fontEst">
+    <label class="titlematd">Confirmación</label>
+    <button class="titlebar-icon" (click)="Cerrar(false)">
+        <mat-icon class="close-icon">close</mat-icon>
+    </button>
+</div>
+    <div mat-dialog-content>
+    <div class="tcenter">{{message}}</div>
+    </div>
+    <div mat-dialog-actions>
+      <button class="boton" (click)="Aceptar()">Aceptar</button>
+        <button class="boton" (click)="Cerrar(false)">Cancelar</button>
+    </div>
