@@ -21,6 +21,15 @@ export class AppMenuComponent implements OnInit {
             label: 'Clientes', routerLink: ['/clients'], icon: 'fa-user',
           },
           {
+            label: 'Clientes Look History', routerLink: ['/clients'], icon: 'fa-user',
+          },
+          {
+            label: 'Emergency Pin Configuration', routerLink: ['/clients'], icon: 'fa-user',
+          },
+          {
+            label: 'Emergency Pin Hitory', routerLink: ['/clients'], icon: 'fa-user',
+          },
+          {
             label: 'Cerrar Sesion', icon: 'fa-sign-out-alt', command: (event: any) => {
               sessionStorage.removeItem('token');
               this.router.navigate(['/login']);

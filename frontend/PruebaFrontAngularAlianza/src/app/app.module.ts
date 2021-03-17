@@ -26,6 +26,10 @@ import {DialogConfElimComponent} from './formas/clients/diagconfelim.component';
 import {LoginComponent} from './formas/login';
 import {LoginService} from './services/login.service';
 import {BlankComponent} from './formas/blank';
+import {MatTableExporterModule} from 'mat-table-exporter';
+import {SharedModule} from './SharedModule';
+import {MatTableModule} from '@angular/material/table';
+import {CdkTableModule} from '@angular/cdk/table';
 
 @NgModule({
   declarations: [
@@ -55,8 +59,7 @@ import {BlankComponent} from './formas/blank';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AppMaterialModule
-  ],
+    SharedModule],
   providers: [XsegundoService, AppCargandoService,  ClientsService, LoginService, LoginGuard, HomeGuard,
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true}],
   bootstrap: [AppComponent]

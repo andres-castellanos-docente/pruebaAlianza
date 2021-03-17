@@ -5,7 +5,7 @@
       <div class="marginauto">
         <div style="max-width:900px" class="marginauto">
           <div class="mat-table-scroll padtop" class="marginauto">
-            <table mat-table [dataSource]="dataSource">
+            <table mat-table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter">
               <ng-container matColumnDef="editar">
                 <th style="max-width:60px" mat-header-cell *matHeaderCellDef> Editar</th>
                 <td style="max-width:60px" class="tcenter" mat-cell *matCellDef="let element;let i = index;">
@@ -64,6 +64,13 @@
           </div>
           <mat-paginator class="matselect" [pageSizeOptions]="[5, 10, 20]"
                          showFirstLastButtons></mat-paginator>
+          <div style="text-align: right">
+          <button mat-raised-button  color="primary" (click)="exporter.exportTable('xlsx', {fileName:'exportexcel', sheet: 'sheet_name', Props: {Author: 'Andres Castellanos' +
+           ''}})">Excel</button>
+          <button mat-raised-button  color="primary" (click)="exporter.exportTable('csv' ,{fileName:'exportcsv'})">Csv</button>
+          <button mat-raised-button  color="primary" (click)="exporter.exportTable('json' ,{fileName:'exportjson'})">Json</button>
+          <button mat-raised-button   color="primary" (click)="exporter.exportTable('txt' ,{fileName:'exporttxt'})">Txt</button>
+          </div>
         </div>
       </div>
     </div>
