@@ -11,6 +11,7 @@ import {ClientModel} from '../../models/client.model';
 import {DialogMessagesComponent} from './diagmessages.component';
 import {DialogConfElimComponent} from './diagconfelim.component';
 import {DialogcreatclientesComponent} from './diagcreatclient.component';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   templateUrl: './clients.component.html',
@@ -21,9 +22,11 @@ import {DialogcreatclientesComponent} from './diagcreatclient.component';
 @Injectable()
 export class ClientsComponent implements OnInit {
 
-  constructor(private clientesService: ClientsService, private cargServ: AppCargandoService, public dialog: MatDialog) {
+  constructor(private clientesService: ClientsService,
+              private builder: FormBuilder, private cargServ: AppCargandoService, public dialog: MatDialog) {
   }
 
+  clieForm: FormGroup;
   dataClients: ClientModel[];
   dataSource: MatTableDataSource<ClientModel>;
   displayedColumns: string[] = ['editar', 'id', 'name', 'phone', 'email', 'sharedkey', 'savedate'];
@@ -34,6 +37,21 @@ export class ClientsComponent implements OnInit {
   ngOnInit(): void {
 
     this.cargarTodosclientes();
+    this.clieForm = this.builder.group({
+      sharedKey: ['', []]
+    });
+  }
+
+  consultar(): void {
+    this.cargServ.iniciarCargando();
+
+    this.clientesService.listarClientsPorSharedKey(this.clieForm.controls.sharedKey.value).subscribe((res: Response) => {
+      const data = res as any;
+      this.dataClients = data.clients;
+      this.dataSource = new MatTableDataSource<ClientModel>(this.dataClients);
+      this.dataSource.paginator = this.paginator;
+      this.cargServ.detenCargando();
+    });
   }
 
   createDialog(): void {

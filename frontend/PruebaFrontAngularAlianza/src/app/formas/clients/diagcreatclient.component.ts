@@ -13,10 +13,10 @@ import {DialogMessagesComponent} from './diagmessages.component';
   templateUrl: 'diagcreatclient.component.html'
 })
 export class DialogcreatclientesComponent implements OnInit {
-  paisForm: FormGroup;
+  clieForm: FormGroup;
   dataAdEd: Array<ClientModel>;
   selectedclie: ClientModel;
-  paisSubmited: boolean;
+  clieSubmited: boolean;
 
   constructor(
     public dialog: MatDialog,
@@ -43,11 +43,11 @@ export class DialogcreatclientesComponent implements OnInit {
   }
 
   onSubmitCrear(): void {
-    this.paisSubmited = true;
-    if (this.paisForm.invalid) {
+    this.clieSubmited = true;
+    if (this.clieForm.invalid) {
       return;
     }
-    const ClienteModelEnv = new ClientModel(this.paisForm.value);
+    const ClienteModelEnv = new ClientModel(this.clieForm.value);
     this.cargServ.iniciarCargando();
     if (this.data.dataed === null) {
       this.paisService.crearCliente(ClienteModelEnv).subscribe((res: Response) => {
@@ -88,7 +88,7 @@ export class DialogcreatclientesComponent implements OnInit {
 
 
   iniciarForm(): void {
-    this.paisForm = this.builder.group({
+    this.clieForm = this.builder.group({
       id: [this.selectedclie.id, []],
       name: [this.selectedclie.name, [Validators.required, Validators.maxLength(255)]],
       phone: [this.selectedclie.phone, [Validators.required, Validators.maxLength(10)]],

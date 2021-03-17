@@ -2,6 +2,17 @@
   <div class="marginauto " [@subirAnimation]>
     <button class="boton" (click)="createDialog()">Crear</button>
     <div class="marginauto contenwhitebot boxs">
+      <div class="marginleft20 ontenwhitebot boxs">
+        <form [formGroup]="clieForm" autocomplete="off">
+          <mat-form-field class="margleft20" appearance="fill">
+            <mat-label>SharedKey</mat-label>
+            <input matInput type="text" formControlName="sharedKey">
+          </mat-form-field>
+        </form>
+        <div class="paddingbottom20">
+          <button mat-raised-button color="primary" (click)="consultar()">Consultar</button>
+        </div>
+      </div>
       <div class="marginauto">
         <div style="max-width:900px" class="marginauto">
           <div class="mat-table-scroll padtop" class="marginauto">
@@ -18,7 +29,7 @@
                 <td style="max-width:60px" class="tcenter" mat-cell
                     *matCellDef="let element"> {{element.id}} </td>
               </ng-container>
-              <ng-container  matColumnDef="name">
+              <ng-container matColumnDef="name">
                 <th style="max-width:100px" mat-header-cell *matHeaderCellDef>Nombre</th>
                 <td style="max-width:100px" class="tcenter" mat-cell
                     *matCellDef="let element"> {{element.name}} </td>
@@ -46,7 +57,6 @@
               </ng-container>
 
 
-
               <!--ng-container matColumnDef="eliminar">
                 <th style="max-width:60px" mat-header-cell *matHeaderCellDef> Eliminar</th>
                 <td style="max-width:60px" class="tcenter" mat-cell *matCellDef="let element;let i = index;">
@@ -54,7 +64,6 @@
                   </button>
                 </td>
               </ng-container-->
-
 
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -65,14 +74,22 @@
           <mat-paginator class="matselect" [pageSizeOptions]="[5, 10, 20]"
                          showFirstLastButtons></mat-paginator>
           <div style="text-align: right">
-          <button mat-raised-button  color="primary" (click)="exporter.exportTable('xlsx', {fileName:'exportexcel', sheet: 'sheet_name', Props: {Author: 'Andres Castellanos' +
-           ''}})">Excel</button>
-          <button mat-raised-button  color="primary" (click)="exporter.exportTable('csv' ,{fileName:'exportcsv'})">Csv</button>
-          <button mat-raised-button  color="primary" (click)="exporter.exportTable('json' ,{fileName:'exportjson'})">Json</button>
-          <button mat-raised-button   color="primary" (click)="exporter.exportTable('txt' ,{fileName:'exporttxt'})">Txt</button>
+            <button mat-raised-button color="primary" (click)="exporter.exportTable('xlsx', {fileName:'exportexcel', sheet: 'sheet_name', Props: {Author: 'Andres Castellanos' +
+           ''}})">Excel
+            </button>
+            <button mat-raised-button color="primary" (click)="exporter.exportTable('csv' ,{fileName:'exportcsv'})">
+              Csv
+            </button>
+            <button mat-raised-button color="primary" (click)="exporter.exportTable('json' ,{fileName:'exportjson'})">
+              Json
+            </button>
+            <button mat-raised-button color="primary" (click)="exporter.exportTable('txt' ,{fileName:'exporttxt'})">
+              Txt
+            </button>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

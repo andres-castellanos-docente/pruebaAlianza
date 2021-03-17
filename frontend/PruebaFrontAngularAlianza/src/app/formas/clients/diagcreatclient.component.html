@@ -4,10 +4,10 @@
         <mat-icon class="close-icon">close</mat-icon>
     </button>
 </div>
-<form  [formGroup]="paisForm" autocomplete="off" >
+<form  [formGroup]="clieForm" autocomplete="off" >
     <div mat-dialog-content>
         <div class="flexcontent">
-          <mat-form-field appearance="fill" [ngClass]="{ 'ng-invalid mat-form-field-invalid':  paisForm.controls.name.errors && paisSubmited }">
+          <mat-form-field appearance="fill" [ngClass]="{ 'ng-invalid mat-form-field-invalid':  clieForm.controls.name.errors && clieSubmited }">
             <mat-label>Nombre Cliente</mat-label>
             <input formControlName="name" maxlength="255" type="text"  class="inputtext" matInput>
           </mat-form-field>
@@ -27,7 +27,7 @@
             <mat-label>StartDate Cliente</mat-label>
             <input formControlName="startdate"  appOnlyDates type="text" inputmode="numeric"
                    class=" ui-inputtext ui-inputcust ui-widget ng-untouched autocomp"
-                   placeholder="Fecha Inicio" matInput [matDatepicker]="FecInicioPicker"
+                    matInput [matDatepicker]="FecInicioPicker"
                    autocomplete="off" autocorrect="off" spellcheck="false">
             <mat-datepicker   #FecInicioPicker></mat-datepicker>
             <mat-datepicker-toggle class="matdat" matSuffix [for]="FecInicioPicker"></mat-datepicker-toggle>
@@ -36,7 +36,7 @@
             <mat-label>EndDate Cliente</mat-label>
             <input formControlName="enddate"  appOnlyDates type="text" inputmode="numeric"
                    class=" ui-inputtext ui-inputcust ui-widget ng-untouched autocomp"
-                   placeholder="Fecha Fin" matInput [matDatepicker]="FecFinPicker"
+                    matInput [matDatepicker]="FecFinPicker"
                    autocomplete="off" autocorrect="off" spellcheck="false">
             <mat-datepicker  #FecFinPicker></mat-datepicker>
             <mat-datepicker-toggle  class="matdat" matSuffix [for]="FecFinPicker"></mat-datepicker-toggle>

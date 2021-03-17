@@ -72,4 +72,19 @@ public class ClientServiceImpl implements ClientService {
             }
 
     }
+
+    @Override
+    public ResponseEntity<ClientsResponse> leerClientsPorShared(String sharedkey) {
+        List<String> listMess = new ArrayList<>();
+        try {
+            listMess.add("Se leyeron  los Clientes con sharedkey: "+ sharedkey);
+            return new ResponseEntity<>(new ClientsResponse(1, listMess, clientsRepository.findAllBySharedkey(sharedkey), HttpStatus.OK.value()), HttpStatus.OK);
+        }
+        catch (Exception e) {
+            listMess.add("Ocurrio un error al leer los Clientes con sharedkey: "+ sharedkey);
+            return new ResponseEntity<>(new ClientsResponse(-1, listMess, HttpStatus.INTERNAL_SERVER_ERROR.value()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
 }

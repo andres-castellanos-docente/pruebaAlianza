@@ -29,6 +29,15 @@ public class ClientsController {
         return clientService.leerClients();
     }
 
+
+    @GetMapping("/clients/{sharedkey}")
+    public ResponseEntity<ClientsResponse>  getClientByShared(@PathVariable(value = "sharedkey") String sharedKey)
+    {
+        return clientService.leerClientsPorShared(sharedKey);
+    }
+
+
+
     @PutMapping("/clients")
     public ResponseEntity<ClientResponse>  modClient(@RequestBody ClientsDto client)
     {

@@ -8,4 +8,5 @@ import org.springframework.http.ResponseEntity;
 public interface ClientService {
     ResponseEntity<ClientResponse> crearEdClient(ClientsDto client);
     ResponseEntity<ClientsResponse> leerClients();
+    public ResponseEntity<ClientsResponse> leerClientsPorShared(String nombre);
 }

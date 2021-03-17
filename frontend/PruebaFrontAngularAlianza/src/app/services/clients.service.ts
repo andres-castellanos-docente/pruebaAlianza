@@ -19,6 +19,9 @@ export class ClientsService {
     listarClients(): Observable<any> {
         return this.http.get(environment.apiUrl + this.path, {});
     }
+  listarClientsPorSharedKey(sharedkey: string): Observable<any> {
+    return this.http.get(environment.apiUrl + this.path + '/' + sharedkey, {});
+  }
 
     editarCliente(request: ClientModel): Observable<any> {
       return this.http.put(environment.apiUrl + this.path, request, {});
