@@ -18,7 +18,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ClientsComponent} from './formas/clients';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppMaterialModule} from './app.material.module';
-import {DialogcreatpaisesComponent} from './formas/clients/diagcreatclient.component';
+import {DialogcreatclientesComponent} from './formas/clients/diagcreatclient.component';
 import {ClientsService} from './services/clients.service';
 import {HomeGuard, LoginGuard} from './guards';
 import {DialogMessagesComponent} from './formas/clients/diagmessages.component';
@@ -42,11 +42,11 @@ import {BlankComponent} from './formas/blank';
     ClientsComponent,
     BlankComponent,
     LoginComponent,
-    DialogcreatpaisesComponent,
+    DialogcreatclientesComponent,
     DialogMessagesComponent,
     DialogConfElimComponent
   ],
-  entryComponents: [DialogcreatpaisesComponent, DialogMessagesComponent, DialogConfElimComponent
+  entryComponents: [DialogcreatclientesComponent, DialogMessagesComponent, DialogConfElimComponent
   ],
   imports: [
     BrowserModule,

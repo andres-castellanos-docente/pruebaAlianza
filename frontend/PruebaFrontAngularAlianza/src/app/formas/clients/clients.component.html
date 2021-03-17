@@ -3,7 +3,7 @@
     <button class="boton" (click)="createDialog()">Crear</button>
     <div class="marginauto contenwhitebot boxs">
       <div class="marginauto">
-        <div style="max-width:600px" class="marginauto">
+        <div style="max-width:900px" class="marginauto">
           <div class="mat-table-scroll padtop" class="marginauto">
             <table mat-table [dataSource]="dataSource">
               <ng-container matColumnDef="editar">
@@ -13,14 +13,14 @@
                   </button>
                 </td>
               </ng-container>
-              <ng-container matColumnDef="idClie">
+              <ng-container matColumnDef="id">
                 <th style="max-width:60px" mat-header-cell *matHeaderCellDef>Id Cliente</th>
                 <td style="max-width:60px" class="tcenter" mat-cell
-                    *matCellDef="let element"> {{element.idClie}} </td>
+                    *matCellDef="let element"> {{element.id}} </td>
               </ng-container>
               <ng-container  matColumnDef="name">
-                <th style="max-width:60px" mat-header-cell *matHeaderCellDef>Nombre</th>
-                <td style="max-width:60px" class="tcenter" mat-cell
+                <th style="max-width:100px" mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td style="max-width:100px" class="tcenter" mat-cell
                     *matCellDef="let element"> {{element.name}} </td>
               </ng-container>
               <ng-container matColumnDef="phone">
@@ -28,6 +28,24 @@
                 <td style="max-width:60px" class="tcenter" mat-cell
                     *matCellDef="let element"> {{element.phone}} </td>
               </ng-container>
+              <ng-container matColumnDef="email">
+                <th style="max-width:200px" mat-header-cell *matHeaderCellDef> Email</th>
+                <td style="max-width:200px" class="tcenter" mat-cell
+                    *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+              <ng-container matColumnDef="sharedkey">
+                <th style="max-width:100px" mat-header-cell *matHeaderCellDef> Shared Key</th>
+                <td style="max-width:100px" class="tcenter" mat-cell
+                    *matCellDef="let element"> {{element.sharedkey}} </td>
+              </ng-container>
+              <ng-container matColumnDef="savedate">
+                <th style="max-width:100px" mat-header-cell *matHeaderCellDef> Saved Date</th>
+                <td style="max-width:100px" class="tcenter" mat-cell
+                    *matCellDef="let element"> {{element.savedate}} </td>
+              </ng-container>
+
+
+
               <!--ng-container matColumnDef="eliminar">
                 <th style="max-width:60px" mat-header-cell *matHeaderCellDef> Eliminar</th>
                 <td style="max-width:60px" class="tcenter" mat-cell *matCellDef="let element;let i = index;">

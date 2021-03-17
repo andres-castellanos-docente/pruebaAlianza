@@ -1,8 +1,8 @@
-import {PaisesModel} from '../models/paises.model';
+import {ClientModel} from '../models/client.model';
 
 export interface CreatePaisResponse {
     responseCode: number;
-    pais: Array<PaisesModel>;
+    client: Array<ClientModel>;
     responseDescription: string;
 }
 export interface LoginResponse {

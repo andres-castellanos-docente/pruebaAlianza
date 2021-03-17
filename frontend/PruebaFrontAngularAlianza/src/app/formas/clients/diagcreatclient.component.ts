@@ -1,8 +1,8 @@
-import {Component, Inject,  OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ClientsService} from '../../services/clients.service';
-import {PaisesModel} from '../../models/paises.model';
+import {ClientModel} from '../../models/client.model';
 import {AppCargandoService} from '../../appBase/cargando/app.cargando.service';
 import {CreatePaisResponse} from '../../responses/listResponses';
 import {DialogMessagesComponent} from './diagmessages.component';
@@ -12,20 +12,21 @@ import {DialogMessagesComponent} from './diagmessages.component';
   selector: 'app-diagcreatdependencsp-component',
   templateUrl: 'diagcreatclient.component.html'
 })
-export class DialogcreatpaisesComponent implements OnInit {
+export class DialogcreatclientesComponent implements OnInit {
   paisForm: FormGroup;
-  dataAdEd: Array<PaisesModel>;
-  selectedpais: PaisesModel;
+  dataAdEd: Array<ClientModel>;
+  selectedclie: ClientModel;
   paisSubmited: boolean;
+
   constructor(
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<DialogcreatpaisesComponent>,
+    public dialogRef: MatDialogRef<DialogcreatclientesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private builder: FormBuilder,
     private paisService: ClientsService, private cargServ: AppCargandoService) {
     if (data.dataed === null) {
-      this.selectedpais = new PaisesModel(null);
+      this.selectedclie = new ClientModel(null);
     } else {
-      this.selectedpais = new PaisesModel(data.dataed);
+      this.selectedclie = new ClientModel(data.dataed);
     }
 
   }
@@ -46,15 +47,15 @@ export class DialogcreatpaisesComponent implements OnInit {
     if (this.paisForm.invalid) {
       return;
     }
-    const PaisesModelEnv = new PaisesModel(this.paisForm.value);
+    const ClienteModelEnv = new ClientModel(this.paisForm.value);
     this.cargServ.iniciarCargando();
     if (this.data.dataed === null) {
-      this.paisService.crearCliente(PaisesModelEnv).subscribe((res: Response) => {
+      this.paisService.crearCliente(ClienteModelEnv).subscribe((res: Response) => {
         const response: CreatePaisResponse = res as any;
         this.cargServ.detenCargando();
 
         if (response.responseCode === 1) {
-          this.dataAdEd = response.pais;
+          this.dataAdEd = response.client;
           this.Close(true);
         } else {
           this.dialog.open(DialogMessagesComponent, {
@@ -65,12 +66,12 @@ export class DialogcreatpaisesComponent implements OnInit {
           this.Close(false);
         }
       });
-    } else  {
-      this.paisService.editarCliente(PaisesModelEnv).subscribe((res: Response) => {
+    } else {
+      this.paisService.editarCliente(ClienteModelEnv).subscribe((res: Response) => {
         const response: CreatePaisResponse = res as any;
         this.cargServ.detenCargando();
         if (response.responseCode === 1) {
-          this.dataAdEd = response.pais;
+          this.dataAdEd = response.client;
           this.Close(true);
         } else {
           this.dialog.open(DialogMessagesComponent, {
@@ -88,9 +89,13 @@ export class DialogcreatpaisesComponent implements OnInit {
 
   iniciarForm(): void {
     this.paisForm = this.builder.group({
-      idClie: [this.selectedpais.idClie, []],
-      name: [this.selectedpais.name, [Validators.required, Validators.maxLength(255)]],
-      phone: [this.selectedpais.phone, [Validators.required, Validators.maxLength(10)]]
+      id: [this.selectedclie.id, []],
+      name: [this.selectedclie.name, [Validators.required, Validators.maxLength(255)]],
+      phone: [this.selectedclie.phone, [Validators.required, Validators.maxLength(10)]],
+      email: [this.selectedclie.email, [Validators.required, Validators.email, Validators.maxLength(100)]],
+      startdate: [this.selectedclie.startdate, [Validators.required]],
+      enddate: [this.selectedclie.enddate, [Validators.required]],
+      sharedkey: [this.selectedclie.email, [Validators.required, Validators.maxLength(100)]]
     });
   }
 

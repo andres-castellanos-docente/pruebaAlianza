@@ -7,10 +7,10 @@ import {MatTableDataSource} from '@angular/material/table';
 import {ClientsService} from '../../services/clients.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatDialog} from '@angular/material/dialog';
-import {DialogcreatpaisesComponent} from './diagcreatclient.component';
-import {PaisesModel} from '../../models/paises.model';
+import {ClientModel} from '../../models/client.model';
 import {DialogMessagesComponent} from './diagmessages.component';
 import {DialogConfElimComponent} from './diagconfelim.component';
+import {DialogcreatclientesComponent} from './diagcreatclient.component';
 
 @Component({
   templateUrl: './clients.component.html',
@@ -21,23 +21,23 @@ import {DialogConfElimComponent} from './diagconfelim.component';
 @Injectable()
 export class ClientsComponent implements OnInit {
 
-  constructor(private paisesService: ClientsService, private cargServ: AppCargandoService, public dialog: MatDialog) {
+  constructor(private clientesService: ClientsService, private cargServ: AppCargandoService, public dialog: MatDialog) {
   }
 
-  dataClients: PaisesModel[];
-  dataSource: MatTableDataSource<PaisesModel>;
-  displayedColumns: string[] = ['editar', 'idClie', 'name', 'phone'];
+  dataClients: ClientModel[];
+  dataSource: MatTableDataSource<ClientModel>;
+  displayedColumns: string[] = ['editar', 'id', 'name', 'phone', 'email', 'sharedkey', 'savedate'];
   // displayedColumns: string[] = ['eliminar'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   indexElEd: number;
 
   ngOnInit(): void {
 
-    this.cargarTodosPaises();
+    this.cargarTodosclientes();
   }
 
   createDialog(): void {
-    const dialogRef = this.dialog.open(DialogcreatpaisesComponent, {
+    const dialogRef = this.dialog.open(DialogcreatclientesComponent, {
       minWidth: '320px',
       maxWidth: '632px',
       data: {dataed: null}
@@ -54,7 +54,7 @@ export class ClientsComponent implements OnInit {
               data: {message: 'Cliente Creado 😃'}
             });
             this.dataClients.push(result.dataAdEd);
-            this.dataSource = new MatTableDataSource<PaisesModel>(this.dataClients);
+            this.dataSource = new MatTableDataSource<ClientModel>(this.dataClients);
             this.dataSource.paginator = this.paginator;
           }
         }
@@ -62,11 +62,11 @@ export class ClientsComponent implements OnInit {
     });
   }
 
-  eliminar(paisEd: PaisesModel, indexEl: number): void {
+  eliminar(clieEd: ClientModel, indexEl: number): void {
     const dialogRef = this.dialog.open(DialogConfElimComponent, {
       minWidth: '320px',
       maxWidth: '632px',
-      data: {message: '🤔 ¿Desea Borrar el Cliente ' + paisEd.name + '?', idPaisElim: paisEd.idClie}
+      data: {message: '🤔 ¿Desea Borrar el Cliente ' + clieEd.name + '?', idElim: clieEd.id}
     });
     dialogRef.afterClosed().subscribe(result => {
       // Se verifica si es diferente de nil para evitar error que ocurre al oprimir Esc
@@ -80,7 +80,7 @@ export class ClientsComponent implements OnInit {
               data: {message: 'Cliente Eliminado 😌'}
             });
             this.dataClients.splice(indexEl, 1);
-            this.dataSource = new MatTableDataSource<PaisesModel>(this.dataClients);
+            this.dataSource = new MatTableDataSource<ClientModel>(this.dataClients);
             this.dataSource.paginator = this.paginator;
           }
         }
@@ -90,12 +90,12 @@ export class ClientsComponent implements OnInit {
 
   }
 
-  editar(paisEd: PaisesModel, indexEd: number): void {
+  editar(clieEd: ClientModel, indexEd: number): void {
     this.indexElEd = indexEd;
-    const dialogRef = this.dialog.open(DialogcreatpaisesComponent, {
+    const dialogRef = this.dialog.open(DialogcreatclientesComponent, {
       minWidth: '320px',
       maxWidth: '632px',
-      data: {dataed: paisEd}
+      data: {dataed: clieEd}
     });
     dialogRef.afterClosed().subscribe(result => {
       // Se verifica si es diferente de nil para evitar error que ocurre al oprimir Esc
@@ -109,7 +109,7 @@ export class ClientsComponent implements OnInit {
               data: {message: 'Cliente Editado 😃'}
             });
             this.dataClients[this.indexElEd] = result.dataAdEd;
-            this.dataSource = new MatTableDataSource<PaisesModel>(this.dataClients);
+            this.dataSource = new MatTableDataSource<ClientModel>(this.dataClients);
             this.dataSource.paginator = this.paginator;
           }
         }
@@ -117,13 +117,13 @@ export class ClientsComponent implements OnInit {
     });
   }
 
-  cargarTodosPaises(): void {
+  cargarTodosclientes(): void {
     this.cargServ.iniciarCargando();
 
-    this.paisesService.listarClients().subscribe((res: Response) => {
+    this.clientesService.listarClients().subscribe((res: Response) => {
       const data = res as any;
       this.dataClients = data.clients;
-      this.dataSource = new MatTableDataSource<PaisesModel>(this.dataClients);
+      this.dataSource = new MatTableDataSource<ClientModel>(this.dataClients);
       this.dataSource.paginator = this.paginator;
       this.cargServ.detenCargando();
     });
