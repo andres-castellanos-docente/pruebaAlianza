@@ -71,6 +71,7 @@ export class DialogcreatclientesComponent implements OnInit {
         const response: CreatePaisResponse = res as any;
         this.cargServ.detenCargando();
         if (response.responseCode === 1) {
+          debugger;
           this.dataAdEd = response.client;
           this.Close(true);
         } else {
@@ -92,7 +93,7 @@ export class DialogcreatclientesComponent implements OnInit {
       id: [this.selectedclie.id, []],
       name: [this.selectedclie.name, [Validators.required, Validators.maxLength(255)]],
       phone: [this.selectedclie.phone, [Validators.required, Validators.maxLength(10)]],
-      email: [this.selectedclie.email, [Validators.required, Validators.email, Validators.maxLength(100)]],
+      email: [this.selectedclie.email, [Validators.required, Validators.email, Validators.maxLength(200)]],
       startdate: [this.selectedclie.startdate, [Validators.required]],
       enddate: [this.selectedclie.enddate, [Validators.required]],
       sharedkey: [this.selectedclie.email, [Validators.required, Validators.maxLength(100)]]

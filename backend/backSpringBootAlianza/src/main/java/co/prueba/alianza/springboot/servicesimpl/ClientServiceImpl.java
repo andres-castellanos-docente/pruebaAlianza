@@ -14,8 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Lazy
 @Service
@@ -33,12 +35,17 @@ public class ClientServiceImpl implements ClientService {
 
         try {
             ClientsEntity clientsEntity = new ClientsEntity();
+            if (Objects.isNull(client.getId())==false){
+                clientsEntity.setId(client.getId());
+            }
+
+            clientsEntity.setEmail(client.getEmail());
             clientsEntity.setName(client.getName());
             clientsEntity.setPhone(client.getPhone());
             clientsEntity.setSharedkey(client.getSharedkey());
             clientsEntity.setStartdate(client.getStartdate());
             clientsEntity.setEnddate(client.getEnddate());
-
+            clientsEntity.setSavedate( new Date());
             ClientsEntity clientSaved = clientsRepository.save(clientsEntity);
             ClientResponseDto clientResponseDto = new ClientResponseDto(clientSaved);
 

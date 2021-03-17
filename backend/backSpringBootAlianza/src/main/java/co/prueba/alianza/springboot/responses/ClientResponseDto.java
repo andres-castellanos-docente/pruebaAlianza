@@ -2,10 +2,11 @@ package co.prueba.alianza.springboot.responses;
 
 import co.prueba.alianza.springboot.entities.ClientsEntity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class ClientResponseDto {
     public ClientResponseDto(ClientsEntity clientsEntity) {
+        setId(clientsEntity.getId());
         setName(clientsEntity.getName());
         setEmail(clientsEntity.getEmail());
         setEnddate(clientsEntity.getEnddate());
@@ -14,6 +15,7 @@ public class ClientResponseDto {
         setStartdate(clientsEntity.getStartdate());
         setSharedkey(clientsEntity.getSharedkey());
     }
+    private Long id;
     private String name;
     private String phone;
     private String email;
@@ -79,5 +81,11 @@ public class ClientResponseDto {
     }
 
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

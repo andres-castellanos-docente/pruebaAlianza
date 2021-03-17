@@ -25,11 +25,21 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>StartDate Cliente</mat-label>
-            <input formControlName="startdate" maxlength="255" type="text"  class="inputtext" matInput>
+            <input formControlName="startdate"  appOnlyDates type="text" inputmode="numeric"
+                   class=" ui-inputtext ui-inputcust ui-widget ng-untouched autocomp"
+                   placeholder="Fecha Inicio" matInput [matDatepicker]="FecInicioPicker"
+                   autocomplete="off" autocorrect="off" spellcheck="false">
+            <mat-datepicker-toggle matSuffix [for]="FecInicioPicker"></mat-datepicker-toggle>
+            <mat-datepicker   #FecInicioPicker></mat-datepicker>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>EndDate Cliente</mat-label>
-            <input formControlName="enddate" maxlength="255" type="text"  class="inputtext" matInput>
+            <input formControlName="enddate"  appOnlyDates type="text" inputmode="numeric"
+                   class=" ui-inputtext ui-inputcust ui-widget ng-untouched autocomp"
+                   placeholder="Fecha Fin" matInput [matDatepicker]="FecFinPicker"
+                   autocomplete="off" autocorrect="off" spellcheck="false">
+            <mat-datepicker-toggle matSuffix [for]="FecFinPicker"></mat-datepicker-toggle>
+            <mat-datepicker  #FecFinPicker></mat-datepicker>
           </mat-form-field>
 
         </div>

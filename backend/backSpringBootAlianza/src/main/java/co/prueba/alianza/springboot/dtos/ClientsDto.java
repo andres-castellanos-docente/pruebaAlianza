@@ -3,7 +3,7 @@ package co.prueba.alianza.springboot.dtos;
 import java.sql.Date;
 
 public class ClientsDto {
-
+	private Long id;
 	private String name;
 	private String phone;
 	private String email;
@@ -66,5 +66,13 @@ public class ClientsDto {
 
 	public void setSavedate(Date savedate) {
 		this.savedate = savedate;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
