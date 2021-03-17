@@ -29,8 +29,8 @@
                    class=" ui-inputtext ui-inputcust ui-widget ng-untouched autocomp"
                    placeholder="Fecha Inicio" matInput [matDatepicker]="FecInicioPicker"
                    autocomplete="off" autocorrect="off" spellcheck="false">
-            <mat-datepicker-toggle matSuffix [for]="FecInicioPicker"></mat-datepicker-toggle>
             <mat-datepicker   #FecInicioPicker></mat-datepicker>
+            <mat-datepicker-toggle class="matdat" matSuffix [for]="FecInicioPicker"></mat-datepicker-toggle>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>EndDate Cliente</mat-label>
@@ -38,8 +38,9 @@
                    class=" ui-inputtext ui-inputcust ui-widget ng-untouched autocomp"
                    placeholder="Fecha Fin" matInput [matDatepicker]="FecFinPicker"
                    autocomplete="off" autocorrect="off" spellcheck="false">
-            <mat-datepicker-toggle matSuffix [for]="FecFinPicker"></mat-datepicker-toggle>
             <mat-datepicker  #FecFinPicker></mat-datepicker>
+            <mat-datepicker-toggle  class="matdat" matSuffix [for]="FecFinPicker"></mat-datepicker-toggle>
+
           </mat-form-field>
 
         </div>

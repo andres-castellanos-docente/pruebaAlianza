@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
         alert('Ocurrio un Error al Setear el Token');
       }
     }, (err) => {
-      debugger;
       if (err.status === 401) {
         this.viewMessages = false;
         const self = this;

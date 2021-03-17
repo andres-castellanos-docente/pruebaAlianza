@@ -18,7 +18,7 @@ export class AppMenuComponent implements OnInit {
       ngOnInit(): void {
         this.model = [
           {
-            label: 'Clientes', routerLink: ['/clients'], icon: 'fa-flag',
+            label: 'Clientes', routerLink: ['/clients'], icon: 'fa-user',
           },
           {
             label: 'Cerrar Sesion', icon: 'fa-sign-out-alt', command: (event: any) => {

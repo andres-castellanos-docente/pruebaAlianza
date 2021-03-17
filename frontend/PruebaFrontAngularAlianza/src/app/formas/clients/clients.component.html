@@ -42,7 +42,7 @@
               <ng-container matColumnDef="savedate">
                 <th style="max-width:100px" mat-header-cell *matHeaderCellDef> Saved Date</th>
                 <td style="max-width:100px" class="tcenter" mat-cell
-                    *matCellDef="let element"> {{element.savedate}} </td>
+                    *matCellDef="let element"> {{element.savedate | date:'dd/MM/yyyy'}} </td>
               </ng-container>
 
 
